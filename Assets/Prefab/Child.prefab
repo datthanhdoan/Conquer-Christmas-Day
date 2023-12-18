@@ -98,7 +98,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -537903618, guid: 286a17b86fb241448bec05c3a3651ec5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,12 +126,14 @@ MonoBehaviour:
   - {fileID: 2911943136897391534, guid: d431a177844b26b4c849eea296b7ca3a, type: 3}
   - {fileID: 2156616386575311707, guid: a79bb06bb1e046a489e955d36e694fbf, type: 3}
   - {fileID: 8669523096479576734, guid: 2a523e3c7e0af2a4e804c0da99aec98e, type: 3}
+  currentWayPoint: 0
+  expectedTime: 0
   receivedItem: {fileID: 0}
   thinkingImage: {fileID: 2745916241606448307}
-  wayPoints: {fileID: 8645082842085257875, guid: 7a8b825dcd667ea47af8446ae25879b8, type: 3}
   ReactionImages:
   - {fileID: 334783921941003750, guid: 22987e82f66fc994eaa0d3e3a8703ea4, type: 3}
   - {fileID: 103691462454059289, guid: 47bb541ca6be47944ba3fca478f3ca34, type: 3}
+  spawnerManager: {fileID: 0}
 --- !u!61 &2745916239869236759
 BoxCollider2D:
   m_ObjectHideFlags: 0
