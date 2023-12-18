@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2745916239869236756}
   - component: {fileID: 2745916239869236755}
   - component: {fileID: 2745916239869236759}
-  - component: {fileID: 2745916239869236758}
   - component: {fileID: 2745916239869236744}
   m_Layer: 0
   m_Name: Child
@@ -159,22 +158,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5987148, y: 0.9291694}
   m_EdgeRadius: 0
---- !u!70 &2745916239869236758
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2745916239869236753}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.005083084, y: 0.12522864}
-  m_Size: {x: 0.76200676, y: 1.3392782}
-  m_Direction: 0
 --- !u!50 &2745916239869236744
 Rigidbody2D:
   serializedVersion: 4
