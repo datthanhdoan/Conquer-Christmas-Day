@@ -8,6 +8,7 @@ public class ChildControler : MonoBehaviour
 {
     public Item[] itemsResult;
     public int currentWayPoint = 0;
+    GameManagerment gameManagerment;
     private Item wantedItem;
     public float expectedTime;
     public Item receivedItem;
@@ -17,9 +18,11 @@ public class ChildControler : MonoBehaviour
     public bool isTaken { get; private set; } = false;
     bool isFacingRight = false;
     bool isWaited = false;
+    public bool isHome;
 
     private void Start()
     {
+        gameManagerment = GameObject.Find("GameManager").GetComponent<GameManagerment>();
         //start from the first waypoint
 
         // random the wanted item
@@ -29,9 +32,14 @@ public class ChildControler : MonoBehaviour
     }
     private void Update()
     {
+        if (isHome) return;
         if (!isTaken) expectedTime -= Time.deltaTime;
-        if (expectedTime <= 0) thinkingImage.GetComponent<Image>().sprite = ReactionImages[1].sprite;
-
+        if (expectedTime <= 0)
+        {
+            thinkingImage.GetComponent<Image>().sprite = ReactionImages[1].sprite;
+            isHome = true;
+            gameManagerment.remainingLives--;
+        }
         // Move to the waypoint index = 1 when the item is not taken
         // if (!isTaken)
         // {
@@ -80,23 +88,19 @@ public class ChildControler : MonoBehaviour
             if (wantedItem == receivedItem)
             {
                 Debug.Log("Correct item");
+                gameManagerment.score++;
                 thinkingImage.GetComponent<Image>().sprite = ReactionImages[0].sprite;
             }
             else
             {
                 Debug.Log("Wrong item");
                 thinkingImage.GetComponent<Image>().sprite = ReactionImages[1].sprite;
+                gameManagerment.score--;
             }
         }
 
     }
 
-
-    private IEnumerator WaitAndMove()
-    {
-        yield return new WaitForSeconds(1.5f);
-        isWaited = true;
-    }
     public void Flip()
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));

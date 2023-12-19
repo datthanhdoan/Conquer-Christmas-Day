@@ -42,7 +42,7 @@ public class SpawnerManager : MonoBehaviour
     }
     void MoveChildToHome()
     {
-        float speed = 2f; // Define a speed for the movement
+        float speed = 0.5f; // Define a speed for the movement
 
         if (child.Count > 0)
         {
@@ -77,6 +77,10 @@ public class SpawnerManager : MonoBehaviour
                 {
                     childHome[i].GetComponent<ChildControler>().currentWayPoint++;
                 }
+                // if (child[i].transform.position == homeQueue[homeQueue.Length - 1])
+                // {
+                //     child[i].GetComponent<ChildControler>().isHome = true;
+                // }
             }
         }
     }
@@ -103,7 +107,7 @@ public class SpawnerManager : MonoBehaviour
     void SetTimeSpawn()
     {
         int timeToStore = 6;
-        if (ingameTime > 0) timeSpawn = 7 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
+        if (ingameTime > 0) timeSpawn = 6 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
         if (ingameTime > 30) timeSpawn = 5 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
         if (ingameTime > 60) timeSpawn = 3 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
         if (ingameTime > 90) timeSpawn = 2 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
@@ -116,8 +120,8 @@ public class SpawnerManager : MonoBehaviour
         int timeToStore = 6;
         if (ingameTime > 0) child.GetComponent<ChildControler>().expectedTime = 10 + timeToStore;
         if (ingameTime > 60) child.GetComponent<ChildControler>().expectedTime = 8 + timeToStore;
-        if (ingameTime > 120) child.GetComponent<ChildControler>().expectedTime = 6 + timeToStore;
-        if (ingameTime > 180) child.GetComponent<ChildControler>().expectedTime = 4 + timeToStore;
+        if (ingameTime > 120) child.GetComponent<ChildControler>().expectedTime = 8 + timeToStore;
+        if (ingameTime > 180) child.GetComponent<ChildControler>().expectedTime = 7 + timeToStore;
 
     }
     void Spawn()
