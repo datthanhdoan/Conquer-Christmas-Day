@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ChildControler : MonoBehaviour
 {
+    public GameObject[] particleEffect;
+    // public Transform sprite;
     public Item[] itemsResult;
     public int currentWayPoint = 0;
     GameManagerment gameManagerment;
@@ -39,6 +41,7 @@ public class ChildControler : MonoBehaviour
             thinkingImage.GetComponent<Image>().sprite = ReactionImages[1].sprite;
             isHome = true;
             gameManagerment.remainingLives--;
+
         }
         // Move to the waypoint index = 1 when the item is not taken
         // if (!isTaken)
@@ -90,6 +93,10 @@ public class ChildControler : MonoBehaviour
                 Debug.Log("Correct item");
                 gameManagerment.score++;
                 thinkingImage.GetComponent<Image>().sprite = ReactionImages[0].sprite;
+                foreach (GameObject effect in particleEffect)
+                {
+                    effect.SetActive(true);
+                }
             }
             else
             {
@@ -104,6 +111,7 @@ public class ChildControler : MonoBehaviour
     public void Flip()
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        // sprite.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
     }
 }
 
