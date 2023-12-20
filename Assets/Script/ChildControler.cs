@@ -17,9 +17,7 @@ public class ChildControler : MonoBehaviour
     public GameObject thinkingImage;
     public Image[] ReactionImages;
     public SpawnerManager spawnerManager;
-    public bool isTaken { get; private set; } = false;
-    bool isFacingRight = false;
-    bool isWaited = false;
+    public bool isTaken;
     public bool isHome;
 
     private void Start()
@@ -32,6 +30,21 @@ public class ChildControler : MonoBehaviour
         // set the wanted item image to the thinking image ( or popup image , whenever you want to call)
         thinkingImage.GetComponent<Image>().sprite = wantedItem.gameObject.GetComponent<Image>().sprite;
     }
+    public void createValue()
+    {
+        currentWayPoint = 0;
+        expectedTime = Random.Range(5, 10);
+        isTaken = false;
+        isHome = false;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        wantedItem = itemsResult[Random.Range(0, itemsResult.Length)];
+        receivedItem = null;
+        thinkingImage.GetComponent<Image>().sprite = wantedItem.gameObject.GetComponent<Image>().sprite;
+        foreach (GameObject effect in particleEffect)
+        {
+            effect.SetActive(false);
+        }
+    }
     private void Update()
     {
         if (isHome) return;
@@ -43,35 +56,6 @@ public class ChildControler : MonoBehaviour
             gameManagerment.remainingLives--;
 
         }
-        // Move to the waypoint index = 1 when the item is not taken
-        // if (!isTaken)
-        // {
-        //     // transform.position = Vector3.MoveTowards(transform.position, wayPoints.points[currentWayPoint + 1], 2 * Time.deltaTime);
-        // }
-        // // move to the end of the waypoint when the item is taken
-        // if (isTaken && currentWayPoint < wayPoints.points.Length - 1)
-        // {
-        //     // flip in waypoint index = 2
-        //     if (currentWayPoint == 2 && !isFacingRight)
-        //     {
-        //         Flip();
-        //     }
-        //     // if not wait, wait and move to the next waypoint and go to the end of the waypoint
-        //     if (isWaited)
-        //     {
-        //         isWaited = false;
-        //         if (transform.position == wayPoints.points[currentWayPoint + 1])
-        //         {
-        //             currentWayPoint++;
-        //         }
-        //         transform.position = Vector3.MoveTowards(transform.position, wayPoints.points[currentWayPoint + 1], 2 * Time.deltaTime);
-
-        //     }
-        //     else
-        //     {
-        //         StartCoroutine(WaitAndMove());
-        //     }
-        // }
 
     }
 
@@ -93,10 +77,12 @@ public class ChildControler : MonoBehaviour
                 Debug.Log("Correct item");
                 gameManagerment.score++;
                 thinkingImage.GetComponent<Image>().sprite = ReactionImages[0].sprite;
+                particleEffect[0].GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, wantedItem.gameObject.GetComponent<Image>().sprite);
                 foreach (GameObject effect in particleEffect)
                 {
                     effect.SetActive(true);
                 }
+
             }
             else
             {
@@ -108,10 +94,11 @@ public class ChildControler : MonoBehaviour
 
     }
 
+
     public void Flip()
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-        // sprite.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
     }
+
 }
 

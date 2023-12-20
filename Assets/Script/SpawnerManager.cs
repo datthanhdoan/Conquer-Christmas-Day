@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+// using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class SpawnerManager : MonoBehaviour
     public Vector3[] waitQueue;
     public Vector3[] homeQueue;
     public List<GameObject> child = new List<GameObject>();
-    private List<GameObject> childHome = new List<GameObject>();
+    public List<GameObject> childHome = new List<GameObject>();
     public GameObject childPrefab;
     public float ingameTime;
     private float timeSpawn;
@@ -55,16 +56,6 @@ public class SpawnerManager : MonoBehaviour
 
         for (int i = 0; i < childHome.Count; i++)
         {
-
-            // int currentWayPoint = childHome[i].GetComponent<ChildControler>().currentWayPoint;
-            // if (childHome[i].transform.position != homeQueue[currentWayPoint])
-            // {
-            //     childHome[i].transform.position = Vector3.MoveTowards(childHome[i].transform.position, homeQueue[currentWayPoint], speed * Time.deltaTime);
-            // }
-            // else
-            // {
-            //     childHome[i].GetComponent<ChildControler>().currentWayPoint++;
-            // }
             for (int j = 0; j < homeQueue.Length - 1; j++)
             {
                 // ChildControler currentChild = childHome[i].GetComponent<ChildControler>();
@@ -77,13 +68,29 @@ public class SpawnerManager : MonoBehaviour
                 {
                     childHome[i].GetComponent<ChildControler>().currentWayPoint++;
                 }
-                // if (child[i].transform.position == homeQueue[homeQueue.Length - 1])
-                // {
-                //     child[i].GetComponent<ChildControler>().isHome = true;
-                // }
+                else
+                {
+                    childHome[i].SetActive(false);
+                    childHome.RemoveAt(i);
+                }
             }
         }
     }
+    // void resetChild(GameObject child)
+    // {
+    //     child.GetComponent<ChildControler>().currentWayPoint = 0;
+    //     child.GetComponent<ChildControler>().isTaken = false;
+    //     child.GetComponent<ChildControler>().expectedTime = 0;
+    //     child.GetComponent<ChildControler>().receivedItem = null;
+    //     child.GetComponent<ChildControler>().isHome = false;
+    //     child.GetComponent<ChildControler>().Flip();
+    //     foreach (GameObject effect in child.GetComponent<ChildControler>().particleEffect)
+    //     {
+    //         effect.SetActive(false);
+    //     }
+
+    // }
+
     void MoveChildToNextPoints(List<GameObject> child, Vector3[] queue)
     {
         float speed = 2f; // Define a speed for the movement
@@ -126,7 +133,15 @@ public class SpawnerManager : MonoBehaviour
     }
     void Spawn()
     {
-        child.Add(Instantiate(childPrefab, waitQueue[0], Quaternion.identity));
+        // child.Add(Instantiate(childPrefab, waitQueue[0], Quaternion.identity));
+        GameObject newChild = PoolingObject.instance.GetPooledObject();
+        if (newChild != null)
+        {
+            newChild.transform.position = waitQueue[0];
+            newChild.GetComponent<ChildControler>().createValue();
+            newChild.SetActive(true);
+            child.Add(newChild);
+        }
         SetExpectedTime(child[child.Count - 1]);
     }
 
