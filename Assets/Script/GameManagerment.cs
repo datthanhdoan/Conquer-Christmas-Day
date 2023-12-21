@@ -19,7 +19,7 @@ public class GameManagerment : MonoBehaviour
     void Update()
     {
         CheckHighScore();
-        CheckRemainingLives();
+        GameOver();
         VisualComingSignal();
     }
 
@@ -45,9 +45,9 @@ public class GameManagerment : MonoBehaviour
             }
         }
     }
-    void CheckRemainingLives()
+    void GameOver()
     {
-        if (remainingLives <= 0 & spawnerManager.childHome.Count != 0)
+        if (remainingLives <= 0 && spawnerManager.childHome.Count != 0)
         {
             Debug.Log("Game Over");
             Time.timeScale = 0;

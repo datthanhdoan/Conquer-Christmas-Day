@@ -28,8 +28,9 @@ public class SpawnerManager : MonoBehaviour
     {
         ingameTime += Time.deltaTime;
         SetTimeSpawn();
+        MoveChildToNextPoints();
+        ChildToChildHome();
         MoveChildToHome();
-        MoveChildToNextPoints(child, waitQueue);
         if (_timerSpawn <= 0 && child.Count < waitQueue.Length - 1)
         {
             Spawn();
@@ -43,30 +44,19 @@ public class SpawnerManager : MonoBehaviour
     }
     void MoveChildToHome()
     {
-        float speed = 0.5f; // Define a speed for the movement
-
-        if (child.Count > 0)
-        {
-            if (child[0].GetComponent<ChildControler>().isTaken || child[0].GetComponent<ChildControler>().expectedTime <= 0)
-            {
-                childHome.Add(child[0]);
-                child.RemoveAt(0);
-            }
-        }
-
+        float speed = 0.5f;
         for (int i = 0; i < childHome.Count; i++)
         {
             for (int j = 0; j < homeQueue.Length - 1; j++)
             {
-                // ChildControler currentChild = childHome[i].GetComponent<ChildControler>();
                 if (childHome[i].transform.position == homeQueue[0]) childHome[i].GetComponent<ChildControler>().Flip();
-                if (childHome[i].transform.position != homeQueue[childHome[i].GetComponent<ChildControler>().currentWayPoint])
+                if (childHome[i].transform.position != homeQueue[childHome[i].GetComponent<ChildControler>().currentHomePoint])
                 {
-                    childHome[i].transform.position = Vector3.MoveTowards(childHome[i].transform.position, homeQueue[childHome[i].GetComponent<ChildControler>().currentWayPoint], speed * Time.deltaTime);
+                    childHome[i].transform.position = Vector3.MoveTowards(childHome[i].transform.position, homeQueue[childHome[i].GetComponent<ChildControler>().currentHomePoint], speed * Time.deltaTime);
                 }
-                else if (childHome[i].GetComponent<ChildControler>().currentWayPoint < homeQueue.Length - 1)
+                else if (childHome[i].GetComponent<ChildControler>().currentHomePoint < homeQueue.Length - 1)
                 {
-                    childHome[i].GetComponent<ChildControler>().currentWayPoint++;
+                    childHome[i].GetComponent<ChildControler>().currentHomePoint++;
                 }
                 else
                 {
@@ -76,38 +66,36 @@ public class SpawnerManager : MonoBehaviour
             }
         }
     }
-    // void resetChild(GameObject child)
-    // {
-    //     child.GetComponent<ChildControler>().currentWayPoint = 0;
-    //     child.GetComponent<ChildControler>().isTaken = false;
-    //     child.GetComponent<ChildControler>().expectedTime = 0;
-    //     child.GetComponent<ChildControler>().receivedItem = null;
-    //     child.GetComponent<ChildControler>().isHome = false;
-    //     child.GetComponent<ChildControler>().Flip();
-    //     foreach (GameObject effect in child.GetComponent<ChildControler>().particleEffect)
-    //     {
-    //         effect.SetActive(false);
-    //     }
-
-    // }
-
-    void MoveChildToNextPoints(List<GameObject> child, Vector3[] queue)
+    void ChildToChildHome()
     {
-        float speed = 2f; // Define a speed for the movement
-        // for (int i = 0; i < child.Count; i++)
-        // {
-        //     if (child[i].transform.position != waitQueue[i + 1])
-        //     {
-        //         child[i].transform.position = Vector3.MoveTowards(child[i].transform.position, queue[i + 1], speed * Time.deltaTime);
-        //     }
-        // }
-        int index = queue.Length - 1;
+        if (child.Count > 0)
+        {
+            if (child[0].GetComponent<ChildControler>().isTaken || child[0].GetComponent<ChildControler>().expectedTime <= 0)
+            {
+                childHome.Add(child[0]);
+                child.RemoveAt(0);
+            }
+        }
+    }
+    void MoveChildToNextPoints()
+    {
+        float speed = 0.5f;
+        int index = waitQueue.Length - 1;
         for (int i = 0; i < child.Count; i++)
         {
-            if (child[i].transform.position != queue[index])
+            if (child[i].transform.position != waitQueue[index])
             {
-                child[i].transform.position = Vector3.MoveTowards(child[i].transform.position, queue[index], speed * Time.deltaTime);
+                for (int j = 0; j < index; j++)
+                {
+                    var current = child[i].GetComponent<ChildControler>().currentWayPoint;
+                    if (child[i].transform.position == waitQueue[j])
+                    {
+                        child[i].GetComponent<ChildControler>().currentWayPoint++;
+                    }
+                    child[i].transform.position = Vector3.MoveTowards(child[i].transform.position, waitQueue[current], speed * Time.deltaTime);
+                }
             }
+
             index--;
         }
     }

@@ -10,6 +10,7 @@ public class ChildControler : MonoBehaviour
     // public Transform sprite;
     public Item[] itemsResult;
     public int currentWayPoint = 0;
+    public int currentHomePoint = 0;
     GameManagerment gameManagerment;
     private Item wantedItem;
     public float expectedTime;
@@ -33,6 +34,7 @@ public class ChildControler : MonoBehaviour
     public void createValue()
     {
         currentWayPoint = 0;
+        currentHomePoint = 0;
         expectedTime = Random.Range(5, 10);
         isTaken = false;
         isHome = false;
