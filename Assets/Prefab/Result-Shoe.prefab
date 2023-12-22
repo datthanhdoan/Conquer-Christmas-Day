@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7740803941559755297}
   - component: {fileID: 7050984601093530784}
   - component: {fileID: 2156616386575311707}
+  - component: {fileID: -1582787124796178034}
   m_Layer: 5
   m_Name: Result-Shoe
   m_TagString: Untagged
@@ -90,3 +91,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Pink
+--- !u!114 &-1582787124796178034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603582771963167812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7f876447bcd5b4485d2a13cf5137ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToCraft:
+  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
+  - {fileID: 4220724858928579682, guid: b329dd4bacc25994790456c1c6d27ce1, type: 3}
+  - {fileID: 4220724858928579682, guid: b329dd4bacc25994790456c1c6d27ce1, type: 3}
+  - {fileID: 4220724858928579682, guid: b329dd4bacc25994790456c1c6d27ce1, type: 3}

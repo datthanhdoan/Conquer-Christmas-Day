@@ -90,7 +90,10 @@ public class ChildControler : MonoBehaviour
             {
                 Debug.Log("Wrong item");
                 thinkingImage.GetComponent<Image>().sprite = ReactionImages[1].sprite;
-                gameManagerment.score--;
+                if (gameManagerment.score > 0)
+                {
+                    gameManagerment.score--;
+                }
             }
         }
 

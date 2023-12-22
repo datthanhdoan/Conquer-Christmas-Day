@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4312005866225175706}
   - component: {fileID: 2824280189907084455}
   - component: {fileID: 8669523096479576734}
+  - component: {fileID: -855994585568072935}
   m_Layer: 5
   m_Name: Result-Hat
   m_TagString: Untagged
@@ -90,3 +91,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Hat
+--- !u!114 &-855994585568072935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989500628464621613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7f876447bcd5b4485d2a13cf5137ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToCraft:
+  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
+  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}

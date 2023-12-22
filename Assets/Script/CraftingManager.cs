@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,10 @@ public class CraftingManager : MonoBehaviour
     public string[] recipes;
     public Item[] recipeResults;
     public Slot resultSlot;
+    public bool isPause;
     private void Update()
     {
+        if(isPause) return;
         if (Input.GetMouseButtonUp(0))
         {
             if (currentItem != null)
@@ -72,7 +75,7 @@ public class CraftingManager : MonoBehaviour
             }
         }
     }
-
+    
     public void ClearItems()
     {
         customCursor.gameObject.SetActive(false);

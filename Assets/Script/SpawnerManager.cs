@@ -108,6 +108,7 @@ public class SpawnerManager : MonoBehaviour
         if (ingameTime > 90) timeSpawn = 2 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
         if (ingameTime > 120) timeSpawn = 0 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
         if (ingameTime > 180) timeSpawn = -2 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
+        if (ingameTime > 240) timeSpawn = -3 + timeToStore; Debug.Log("timeSpawn = " + timeSpawn);
     }
     void SetExpectedTime(GameObject child)
     {
@@ -117,6 +118,7 @@ public class SpawnerManager : MonoBehaviour
         if (ingameTime > 60) child.GetComponent<ChildControler>().expectedTime = 8 + timeToStore;
         if (ingameTime > 120) child.GetComponent<ChildControler>().expectedTime = 8 + timeToStore;
         if (ingameTime > 180) child.GetComponent<ChildControler>().expectedTime = 7 + timeToStore;
+        if (ingameTime > 240) child.GetComponent<ChildControler>().expectedTime = 5 + timeToStore;
 
     }
     void Spawn()

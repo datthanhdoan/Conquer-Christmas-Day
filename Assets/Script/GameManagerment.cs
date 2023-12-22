@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +8,42 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerment : MonoBehaviour
 {
+    public static GameManagerment instance;
     public GameObject gameOverPanel;
     public SpawnerManager spawnerManager;
+    public CraftingManager craftingManager;
+    public GameObject objectToHideCrafting;
+    public GameObject PauserImage;
     public GameObject bgMusic;
     public GameObject comingSignal;
+    public GameObject resultItem;
     public int score = 0;
     public int highScore = 0;
     public int remainingLives = 5;
     public Sprite[] pauseSprites;
     public Sprite[] soundSprites;
+    private bool isPause = false;
+    [Header("Effect")]
+    public GameObject santaSlotGameObject;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0) return;
         CheckHighScore();
         GameOver();
         VisualComingSignal();
+        Effect();
     }
 
     void CheckHighScore()
@@ -59,17 +82,31 @@ public class GameManagerment : MonoBehaviour
         //     GameOverPanel.SetActive(false);
         // }
     }
-    public void Pauser(Image Image)
+    public void Pauser()
     {
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
-            Image.sprite = pauseSprites[1];
+            craftingManager.isPause = true;
+            isPause = true;
         }
         else
         {
             Time.timeScale = 1;
-            Image.sprite = pauseSprites[0];
+            craftingManager.isPause = false;
+            isPause = false;
+        }
+    }
+
+    public void ToggleGameObject(GameObject gameObject)
+    {
+        if(gameObject.activeInHierarchy == true)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
         }
     }
     public void Restart()
@@ -92,15 +129,17 @@ public class GameManagerment : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void togglePause()
+    public void togglePause(bool isShowSetting)
     {
-        if (Time.timeScale == 1)
+        if (Time.timeScale == 0 && isPause && !isShowSetting)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;        
+            isPause = false;
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = 0;
+            isPause = true;
         }
     }
     public void ToggleBgMusic(Image image)
@@ -127,5 +166,37 @@ public class GameManagerment : MonoBehaviour
 
     }
 
+    public void Effect()
+    {
+        SantaSlotEffect(); 
+        ChanePauseSprite();
+    }
+    public void ChanePauseSprite()
+    {
+        if (Time.timeScale == 0)
+        {
+            PauserImage.GetComponent<Image>().sprite = pauseSprites[1];
+        }
+        else
+        {
+            PauserImage.GetComponent<Image>().sprite = pauseSprites[0];
+        }
+    }
+    public void SantaSlotEffect()
+    {
+        if(craftingManager.resultSlot.item != null)
+        {
+            santaSlotGameObject.GetComponent<Animator>().SetBool("haveResultItem", true);
+        }
+        else
+        {
+            santaSlotGameObject.GetComponent<Animator>().SetBool("haveResultItem", false);
+        }
+    }
 
+
+    public void Play()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
