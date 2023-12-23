@@ -9,7 +9,13 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private Camera _cam;
     [SerializeField] Tilemap tileMap;
     [SerializeField] private float _buffer = 1.5f;
-    private void Start()
+    void Start()
+    {
+        var (center, size) = CalculateOrthoSize();
+        _cam.transform.position = center;
+        _cam.orthographicSize = size;
+    }
+    private void Update()
     {
         var (center, size) = CalculateOrthoSize();
         _cam.transform.position = center;
