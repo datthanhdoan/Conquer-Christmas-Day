@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerment : MonoBehaviour
 {
-    public static GameManagerment instance;
+    // public static GameManagerment instance;
     public GameObject gameOverPanel;
     public SpawnerManager spawnerManager;
     public CraftingManager craftingManager;
@@ -25,18 +25,18 @@ public class GameManagerment : MonoBehaviour
     private bool isPause = false;
     [Header("Effect")]
     public GameObject santaSlotGameObject;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    // private void Awake()
+    // {
+    //     if (instance == null)
+    //     {
+    //         instance = this;
+    //         DontDestroyOnLoad(this.gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
     void Update()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0) return;

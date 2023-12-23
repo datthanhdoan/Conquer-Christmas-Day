@@ -27,18 +27,21 @@ public class SpawnerManager : MonoBehaviour
     void Update()
     {
         ingameTime += Time.deltaTime;
-        SetTimeSpawn();
-        MoveChildToNextPoints();
-        ChildToChildHome();
-        MoveChildToHome();
-        if (_timerSpawn <= 0 && child.Count < waitQueue.Length - 1)
+        if (ingameTime > 5)
         {
-            Spawn();
-            _timerSpawn = timeSpawn;
-        }
-        else if (child.Count < waitQueue.Length)
-        {
-            _timerSpawn -= Time.deltaTime;
+            SetTimeSpawn();
+            MoveChildToNextPoints();
+            ChildToChildHome();
+            MoveChildToHome();
+            if (_timerSpawn <= 0 && child.Count < waitQueue.Length - 1)
+            {
+                Spawn();
+                _timerSpawn = timeSpawn;
+            }
+            else if (child.Count < waitQueue.Length)
+            {
+                _timerSpawn -= Time.deltaTime;
+            }
         }
 
     }
