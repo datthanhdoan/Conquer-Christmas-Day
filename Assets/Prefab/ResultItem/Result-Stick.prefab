@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7740803941559755297}
   - component: {fileID: 7050984601093530784}
   - component: {fileID: 2156616386575311707}
-  - component: {fileID: -1582787124796178034}
+  - component: {fileID: -3523219494117392233}
   m_Layer: 5
-  m_Name: Result-Shoe
+  m_Name: Result-Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 01e6e2296ddd57642a4395e73b67c95f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 782dc3decee466642ba7e8d09dcecb09, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Pink
---- !u!114 &-1582787124796178034
+--- !u!114 &-3523219494117392233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToCraft:
-  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
-  - {fileID: 4220724858928579682, guid: b329dd4bacc25994790456c1c6d27ce1, type: 3}
-  - {fileID: 4220724858928579682, guid: b329dd4bacc25994790456c1c6d27ce1, type: 3}
-  - {fileID: 4220724858928579682, guid: b329dd4bacc25994790456c1c6d27ce1, type: 3}
+  - {fileID: 8241925523335198292, guid: fc85ac26d622c57428be69a5db1ffaa6, type: 3}
+  - {fileID: 3379496867293483736, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}

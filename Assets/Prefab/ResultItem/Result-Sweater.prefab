@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToCraft:
-  - {fileID: 5102038245048053946, guid: f1e5df06fa1089d47a422eeba0615026, type: 3}
-  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
-  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
-  - {fileID: 8526947916094261190, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
+  - {fileID: 2197118136524170660, guid: f1e5df06fa1089d47a422eeba0615026, type: 3}
+  - {fileID: 3379496867293483736, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
+  - {fileID: 3379496867293483736, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}
+  - {fileID: 3379496867293483736, guid: 4f664b455b4ad224fb6ba4685c498f4b, type: 3}

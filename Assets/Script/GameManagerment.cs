@@ -100,7 +100,7 @@ public class GameManagerment : MonoBehaviour
 
     public void ToggleGameObject(GameObject gameObject)
     {
-        if(gameObject.activeInHierarchy == true)
+        if (gameObject.activeSelf == true)
         {
             gameObject.SetActive(false);
         }
@@ -133,7 +133,7 @@ public class GameManagerment : MonoBehaviour
     {
         if (Time.timeScale == 0 && isPause && !isShowSetting)
         {
-            Time.timeScale = 1;        
+            Time.timeScale = 1;
             isPause = false;
         }
         else
@@ -168,7 +168,7 @@ public class GameManagerment : MonoBehaviour
 
     public void Effect()
     {
-        SantaSlotEffect(); 
+        SantaSlotEffect();
         ChanePauseSprite();
     }
     public void ChanePauseSprite()
@@ -184,7 +184,7 @@ public class GameManagerment : MonoBehaviour
     }
     public void SantaSlotEffect()
     {
-        if(craftingManager.resultSlot.item != null)
+        if (craftingManager.resultSlot.item != null)
         {
             santaSlotGameObject.GetComponent<Animator>().SetBool("haveResultItem", true);
         }
