@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Noel.sln"
+    "dotnet.defaultSolution": "Conquer-Christmas-Day.sln"
 }
