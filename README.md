@@ -1,4 +1,4 @@
-> Game được mình tạo ra trước giáng sinh 2023 .
+> Game được mình tạo ra trước giáng sinh 2023 , thời điểm này kĩ năng code khá dở , không nên đọc code để tránh mù mắt
 
 Mô tả game :
 - Nhiệm vụ của bạn là craft ra những món đồ phù hợp với mong muốn của những đứa trẻ ,kéo thả những vật dụng vào ô trống để craft , công thức craft sẽ hiện ra khi ấn vào biểu tượng cuốn sách phía trên bên trái .
